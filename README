@@ -1,2 +1,9 @@
 Usage of airfi infrastructure:
 ==============================
+1.
+when device boots for the first time, create folder in /var/log/airfi with
+right ownership and permissions for logs
+
+/usr/local/bin	=> airfi_log_setup.sh
+/etc/system/system => airfi-log-perms.service
+systemctl enable airfi-log-perms.service (for enabling and link file creation)

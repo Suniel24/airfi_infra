@@ -1,0 +1,10 @@
+[Unit]
+Description=Ensure /var/log/airfi logs have correct ownership and permissions
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/airfi_log_setup.sh
+
+[Install]
+WantedBy=multi-user.target
