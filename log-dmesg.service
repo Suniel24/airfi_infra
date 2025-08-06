@@ -1,0 +1,6 @@
+[Unit]
+Description=Save dmesg output to log file
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/log_dmesg.sh

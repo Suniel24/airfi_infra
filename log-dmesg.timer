@@ -1,0 +1,11 @@
+[Unit]
+Description=Timer to run dmesg logger every 10 minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=10min
+Unit=log-dmesg.service
+
+[Install]
+WantedBy=timers.target
+

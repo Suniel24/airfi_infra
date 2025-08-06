@@ -1,9 +1,21 @@
 Usage of airfi infrastructure:
 ==============================
 1.
-when device boots for the first time, create folder in /var/log/airfi with
+when device boots for the first time, create folder in /var/log/ with
 right ownership and permissions for logs
 
 /usr/local/bin	=> airfi_log_setup.sh
 /etc/system/system => airfi-log-perms.service
 systemctl enable airfi-log-perms.service (for enabling and link file creation)
+
+this will run onetime
+
+2.
+log dmesg in /var/log/dmesg_logs every 10 minutes from device boot as seperate files
+create folder in /var/log/ with right ownership and permissions for logs
+
+/usr/local/bin  => log_dmesg.sh
+/etc/system/system => log-dmesg.service
+/etc/system/system => log-dmesg.timer (run every 10 min)
+
+systemctl enable --now log-dmesg.timer (for enabling and link file creation)
