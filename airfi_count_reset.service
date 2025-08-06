@@ -1,0 +1,7 @@
+[Unit]
+Description=Reset Count Variables for Airfi Application @ 1700, before restarting airfi app
+After=airfi.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/airfi-count-reset

@@ -1,0 +1,10 @@
+[Unit]
+Description=Stop airfi daily at 17:00 and reset count
+
+[Timer]
+OnCalendar=*-*-* 17:00:00
+Persistent=true
+Unit=daily_shutdown.service
+
+[Install]
+WantedBy=timers.target

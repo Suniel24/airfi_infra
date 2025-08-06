@@ -19,3 +19,44 @@ create folder in /var/log/ with right ownership and permissions for logs
 /etc/system/system => log-dmesg.timer (run every 10 min)
 
 systemctl enable --now log-dmesg.timer (for enabling and link file creation)
+
+3.
+/home/open/old_deploy/yolov8_multhreading_Airfi/install/rknn_yolov8_demo_Linux/airfi_data => airfi_data 
+
+airfi_data:
+IN (0 - default)
+OUT (0 - default)
+CAMERA STATUS (1 - default meaning connected)
+
+service and timers chaining:
+----------------------------
+
+boot => airfi-log-perms.service => airfi.service => .......
+
+every day at 1700 hrs:
+
+daily_shutdown.timer
+	=> daily_shutdown.service
+		=> stops airfi
+		=> starts airfi_count_reset.service (reset count)
+		=> starts airfi-restart.timer
+			=> airfi-restart.service with 2min delay
+
+
+/usr/local/bin  => airfi-count-reset(airfi-count-reset.cpp)
+/etc/system/system => airfi_count_reset.service
+
+/etc/system/system => daily_shutdown.timer
+/etc/system/system => daily_shutdown.service
+/etc/system/system => airfi.service
+/etc/system/system => airfi-restart.timer
+/etc/system/system => airfi-restart.service
+
+systemctl enable airfi.service(for enabling and link file creation)
+systemctl enable --now airfi-restart.timer
+systemctl enable --now daily_shutdown.timer
+
+notes:
+------
+move airfi_data(from existing location) to /etc/airfi/*
+

@@ -1,0 +1,7 @@
+[Unit]
+Description=Restart airfi after count reset and 1-minute delay
+After=airfi_count_reset.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/systemctl restart airfi.service

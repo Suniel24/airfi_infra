@@ -1,0 +1,10 @@
+[Unit]
+Description=Stop airfi.service and run airfi_count_reset
+Wants=airfi_count_reset.service airfi-restart.timer
+After=airfi_count_reset.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/systemctl stop airfi.service
+ExecStartPost=/bin/systemctl start airfi_count_reset.service
+ExecStartPost=/bin/systemctl start airfi-restart.timer

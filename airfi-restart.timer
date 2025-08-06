@@ -1,0 +1,9 @@
+[Unit]
+Description=Restart airfi.service after 1 minute of stop/reset
+
+[Timer]
+OnActiveSec=1min
+Unit=airfi-restart.service
+
+[Install]
+WantedBy=timers.target

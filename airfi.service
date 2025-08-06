@@ -1,0 +1,14 @@
+[Unit]
+Description=Run airfi launch script as soon as network is online
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/airfi_launch.sh
+User=open
+Group=open
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
