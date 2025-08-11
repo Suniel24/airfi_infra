@@ -1,6 +1,12 @@
 Usage of airfi infrastructure:
 ==============================
 1.
+install following packages:
+moreutils
+libcurl4-openssl-dev
+nlohmann-json3-dev
+
+2.
 when device boots for the first time, create folder in /var/log/ with
 right ownership and permissions for logs
 
@@ -10,7 +16,7 @@ systemctl enable airfi-log-perms.service (for enabling and link file creation)
 
 this will run onetime
 
-2.
+3.
 log dmesg in /var/log/dmesg_logs every 10 minutes from device boot as seperate files
 create folder in /var/log/ with right ownership and permissions for logs
 
@@ -20,7 +26,7 @@ create folder in /var/log/ with right ownership and permissions for logs
 
 systemctl enable --now log-dmesg.timer (for enabling and link file creation)
 
-3.
+4.
 /home/open/old_deploy/yolov8_multhreading_Airfi/install/rknn_yolov8_demo_Linux/airfi_data => airfi_data 
 
 airfi_data:
@@ -43,7 +49,9 @@ daily_shutdown.timer
 			=> airfi-restart.service with 2min delay
 
 
+/usr/local/bin 	=> airfi_launch.sh
 /usr/local/bin  => airfi-count-reset(airfi-count-reset.cpp)
+		   aarch64-linux-gnu-g++ airfi-count-reset.cpp -o airfi-count-reset
 /etc/system/system => airfi_count_reset.service
 
 /etc/system/system => daily_shutdown.timer
@@ -53,7 +61,6 @@ daily_shutdown.timer
 /etc/system/system => airfi-restart.service
 
 systemctl enable airfi.service(for enabling and link file creation)
-systemctl enable --now airfi-restart.timer
 systemctl enable --now daily_shutdown.timer
 
 notes:
