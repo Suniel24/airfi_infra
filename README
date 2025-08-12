@@ -88,3 +88,10 @@ airfiDataInsert.cpp
 
 /etc/system/system => airfi_payload.service
 systemctl enable airfi_payload.service(for enabling and link file creation)
+
+NOTES:
+======
+1. move airfi_data(from existing location) to /etc/airfi/*
+2. based on the network interface (enP2p33s0 or wlP3p49s0) 
+	=> change device_health.cpp, airfiDataInsert.cpp accordingly
+	=> change yolov8_multhreading_Airfi/src/rkYolov8n.cc
