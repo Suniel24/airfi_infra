@@ -6,5 +6,7 @@ After=airfi_count_reset.service
 [Service]
 Type=oneshot
 ExecStart=/bin/systemctl stop airfi.service
+ExecStart=/bin/systemctl stop device_payload.service
 ExecStartPost=/bin/systemctl start airfi_count_reset.service
 ExecStartPost=/bin/systemctl start airfi-restart.timer
+ExecStartPost=/bin/systemctl start device_payload.service
