@@ -1,0 +1,16 @@
+[Unit]
+Description=Run airfi payload script after airfi service
+After=airfi.service multi-user.target
+
+[Service]
+Type=simple
+# Wait until airfi is actually active before starting
+ExecStartPre=/bin/bash -c 'until systemctl is-active --quiet airfi.service; do sleep 2; done'
+ExecStart=/usr/local/bin/airfiDataInsert
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/airfi/airfi_payload.log
+StandardError=append:/var/log/airfi/airfi_payload_error.log
+
+[Install]
+WantedBy=multi-user.target

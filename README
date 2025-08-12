@@ -68,7 +68,6 @@ notes:
 move airfi_data(from existing location) to /etc/airfi/*
 
 5.
-
 daily_shutdown.service
 device_payload.service
 device_health.cpp
@@ -80,5 +79,12 @@ json.hpp
 /etc/system/system => device_payload.service
 systemctl enable device_payload.service(for enabling and link file creation)
 
+6.
+airfi_payload.service
+airfiDataInsert.cpp
 
+/usr/local/bin  => airfiDataInsert
+                   (aarch64-linux-gnu-g++ airfiDataInsert.cpp -o airfiDataInsert -lcurl -lsqlite3 -lpthread)
 
+/etc/system/system => airfi_payload.service
+systemctl enable airfi_payload.service(for enabling and link file creation)
